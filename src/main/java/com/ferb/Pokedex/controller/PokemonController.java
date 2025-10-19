@@ -4,6 +4,8 @@ import com.ferb.Pokedex.dto.PokemonResponse;
 import com.ferb.Pokedex.entity.Pokemon;
 import com.ferb.Pokedex.repository.PokemonRepository;
 import com.ferb.Pokedex.service.PokemonService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@Tag(name = "Pokemon APIs", description = "All the Pokedex APIs here")
 public class PokemonController {
 
     @Autowired
     private PokemonService pokemonService;
 
     @GetMapping("/all")
+    @Operation(summary = "Get all pokemons")
     public List<PokemonResponse> getAll() {
         return pokemonService.getAllPokemons();
     }
