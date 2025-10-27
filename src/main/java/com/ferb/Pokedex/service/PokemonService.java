@@ -18,10 +18,15 @@ public class PokemonService {
         return pokemonRepository.findAll().stream().map(this::mapToResponse).collect(Collectors.toList());
     }
 
+    public List<PokemonResponse> searchPokemon(String name){
+        return pokemonRepository.searchPokemonByName(name).stream().map(this::mapToResponse).collect(Collectors.toList());
+    }
+
     private  PokemonResponse mapToResponse (Pokemon pokemon) {
         return PokemonResponse
                 .builder()
                 .id(pokemon.getId())
+                .name(pokemon.getName())
                 .maxHp(pokemon.getMaxHp())
                 .maxCp(pokemon.getMaxCp())
                 .attack(pokemon.getAttack())
